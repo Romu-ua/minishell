@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/tomvaroux/Desktop/git_minishell",
+      "program": "/Users/tomvaroux/Desktop/git_minishell/build/Debug/outDebug"
+    }
+  ]
+}
