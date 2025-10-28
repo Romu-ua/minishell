@@ -1,1 +1,3 @@
 # minishell
+
+change readme
