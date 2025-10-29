@@ -1,0 +1,64 @@
+# --- ビルド生成物（C/C++ 共通） ---
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+a.out
+core
+*.dSYM/
+
+# --- カバレッジ/解析 ---
+*.gcno
+*.gcda
+*.gcov
+lcov.info
+
+# --- ビルドディレクトリ & ツール ---
+/build/
+/dist/
+/bin/
+/lib/
+/tmp/
+/.ccls-cache/
+compile_commands.json.lock
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+*.cmake
+build.ninja
+.ninja_log
+.ninja_deps
+
+# Autotools（使っていれば）
+/autom4te.cache
+/config.log
+/config.status
+/config.h
+/config.h.in
+/Makefile.in
+
+# --- エディタ/IDE ---
+# VS Code: 基本は全部無視。ただし共有したい設定は例外で許可
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# そのほかのエディタ
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ノイズ ---
+.DS_Store
+Thumbs.db
