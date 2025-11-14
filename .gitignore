@@ -62,3 +62,6 @@ build.ninja
 # --- OS ノイズ ---
 .DS_Store
 Thumbs.db
+
+# --- 学習用ディレクトリ ---
+hyamamot/
