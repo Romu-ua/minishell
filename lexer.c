@@ -127,6 +127,7 @@ int	read_quote(const char **p, t_str_buf *b, int quote)
 	}
 	if (**p != quote)
 		return (-1);
+	sb_putc(b, **p);
 	(*p)++; // 終端のquoteを消費。
 	return (0);
 }
@@ -144,6 +145,7 @@ int	read_word(const char **p, t_str_buf *b)
 		if (**p == '\'' || **p == '"')
 		{
 			q = **p;
+			sb_putc(b, **p);
 			(*p)++; //開始quoteを消費
 			if (read_quote(p, b, q) != 0)
 				return (-1);
