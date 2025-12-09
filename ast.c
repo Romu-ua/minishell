@@ -1,47 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyamamot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 00:07:08 by hyamamot          #+#    #+#             */
-/*   Updated: 2025/12/10 00:07:08 by hyamamot         ###   ########.fr       */
+/*   Created: 2025/12/10 00:02:50 by hyamamot          #+#    #+#             */
+/*   Updated: 2025/12/10 00:02:51 by hyamamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "signal.h"
-#include "lexer.h"
 #include "parser.h"
-#include "ast.h"
+#include "lexer.h"
 
-volatile sig_atomic_t	g_exit_status;
-
-int	main(void)
+t_ast	*ast(char *line)
 {
-	char	*line;
-	t_ast	*root;
+	t_token_vec	tv;
+	int			ok;
+	t_parser	ps;
+	t_ast		*root;
 
-	g_exit_status = 0;
-	setup_signal();
-	while (1)
+	if (lex_line(line, &tv) == 0)
+		ok = 1;
+	else
+		ok = 0;
+	if (!ok)
 	{
-		line = readline("minishell> ");
-		if (!line || (strcmp(line, "exit") == 0))
-		{
-			write(1, "exit\n", 5);
-			break ;
-		}
-		root = ast(line);
-		if (!root)
-		{
-			free_ast(root);
-			continue ;
-		}
-		print_ast(root, 0);
-		free_ast(root);
-		free(line);
+		tv_free(&tv);
+		return (NULL);
 	}
-	return (0);
+	ps = (t_parser){.tv = &tv, .pos = 0, .err = NULL};
+	root = parser_input(&ps);
+	tv_free(&tv);
+	return (root);
 }
