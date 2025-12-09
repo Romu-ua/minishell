@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyamamot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 00:07:08 by hyamamot          #+#    #+#             */
-/*   Updated: 2025/12/10 00:07:08 by hyamamot         ###   ########.fr       */
+/*   Created: 2025/12/10 00:07:27 by hyamamot          #+#    #+#             */
+/*   Updated: 2025/12/10 00:07:28 by hyamamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "signal.h"
-#include "lexer.h"
 #include "parser.h"
-#include "ast.h"
 
-volatile sig_atomic_t	g_exit_status;
-
-int	main(void)
+t_token	*peek(t_parser *ps)
 {
-	char	*line;
-	t_ast	*root;
+	return (&ps->tv->data[ps->pos]);
+}
 
-	g_exit_status = 0;
-	setup_signal();
-	while (1)
+t_token	*advance(t_parser *ps)
+{
+	return (&ps->tv->data[ps->pos++]);
+}
+
+int	match(t_parser *ps, t_token_kind k)
+{
+	if (peek(ps)->kind == k)
 	{
-		line = readline("minishell> ");
-		if (!line || (strcmp(line, "exit") == 0))
-		{
-			write(1, "exit\n", 5);
-			break ;
-		}
-		root = ast(line);
-		if (!root)
-		{
-			free_ast(root);
-			continue ;
-		}
-		print_ast(root, 0);
-		free_ast(root);
-		free(line);
+		ps->pos++;
+		return (1);
 	}
+	return (0);
+}
+
+int	expect(t_parser *ps, t_token_kind k, const char *msg)
+{
+	if (match(ps, k))
+		return (1);
+	ps->err = msg;
 	return (0);
 }
