@@ -1,0 +1,4 @@
+
+echo '/bin/pwd' | bash > bash_out 2> bash_err
+
+echo '/bin/pwd' | ./minishell > mshl_out 2> bash_err
