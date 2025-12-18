@@ -10,7 +10,6 @@
 *.exe
 *.out
 a.out
-core
 *.dSYM/
 
 # --- カバレッジ/解析 ---
@@ -64,4 +63,4 @@ build.ninja
 Thumbs.db
 
 # --- 学習用ディレクトリ ---
-hyamamot/
+_hyamamot/
