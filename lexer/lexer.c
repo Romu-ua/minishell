@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "ms_utils.h"
 #include <string.h>
 
 static int	lex_operator(const char **p, t_token_vec *out)
@@ -39,7 +40,7 @@ static int	lex_single_operator(const char **p, t_token_vec *out)
 	if (**p == '&')
 	{
 		tv_push(out, (t_token){.kind = T_ERROR,
-			.lexeme = strdup("unexpected single '&'")});
+			.lexeme = ms_strdup("unexpected single '&'")});
 		tv_push(out, (t_token){.kind = T_EOF, .lexeme = NULL});
 		return (-1);
 	}
@@ -67,7 +68,7 @@ static int	lex_word(const char **p, t_token_vec *out)
 	{
 		sb_free(&sb);
 		tv_push(out, (t_token){.kind = T_ERROR,
-			.lexeme = strdup("unclosed quote")});
+			.lexeme = ms_strdup("unclosed quote")});
 		tv_push(out, (t_token){.kind = T_EOF, .lexeme = NULL});
 		return (-1);
 	}
@@ -75,7 +76,7 @@ static int	lex_word(const char **p, t_token_vec *out)
 	{
 		sb_free(&sb);
 		tv_push(out, (t_token){.kind = T_ERROR,
-			.lexeme = strdup("unexpected error")});
+			.lexeme = ms_strdup("unexpected error")});
 		tv_push(out, (t_token){.kind = T_EOF, .lexeme = NULL});
 		return (-1);
 	}

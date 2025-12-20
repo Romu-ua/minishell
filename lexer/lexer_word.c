@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "ms_utils.h"
 #include <ctype.h>
 
 int	read_quote(const char **p, t_str_buf *b, int quote)
@@ -41,7 +42,7 @@ static int	read_word_quote(const char **p, t_str_buf *b)
 
 static void	read_word_normal(const char **p, t_str_buf *b)
 {
-	while (**p && !isspace((unsigned char)**p)
+	while (**p && !ms_isspace((unsigned char)**p)
 		&& !is_opchar((unsigned char)**p)
 		&& **p != '\'' && **p != '"')
 	{
@@ -55,7 +56,7 @@ int	read_word(const char **p, t_str_buf *b)
 	int	consumed;
 
 	consumed = 0;
-	while (**p && !isspace((unsigned char)**p)
+	while (**p && !ms_isspace((unsigned char)**p)
 		&& !is_opchar((unsigned char)**p))
 	{
 		if (**p == '\'' || **p == '"')

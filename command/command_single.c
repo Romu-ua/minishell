@@ -21,10 +21,7 @@ static int	run_redir_only(t_cmd *cmd)
 	s.in = dup(STDIN_FILENO);
 	s.out = dup(STDOUT_FILENO);
 	if (s.in < 0 || s.out < 0)
-	{
-		perror("dup");
 		return (1);
-	}
 	if (apply_redirs(cmd->redirs) < 0)
 	{
 		cmd_restore_stdio(s.in, s.out);
@@ -42,10 +39,7 @@ static int	run_builtin_parent(t_cmd *cmd)
 	s.in = dup(STDIN_FILENO);
 	s.out = dup(STDOUT_FILENO);
 	if (s.in < 0 || s.out < 0)
-	{
-		perror("dup");
 		return (1);
-	}
 	if (apply_redirs(cmd->redirs) < 0)
 	{
 		cmd_restore_stdio(s.in, s.out);
@@ -61,10 +55,7 @@ static int	wait_one(pid_t pid)
 	int	status;
 
 	if (waitpid(pid, &status, 0) < 0)
-	{
-		perror("waitpid");
 		return (1);
-	}
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
@@ -84,10 +75,7 @@ int	exec_single_command(t_cmd *cmd)
 	setup_signal_ignore();
 	pid = fork();
 	if (pid < 0)
-	{
-		perror("fork");
 		return (1);
-	}
 	if (pid == 0)
 		exec_command_child(cmd);
 	status = wait_one(pid);

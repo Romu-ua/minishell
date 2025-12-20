@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,17 +20,14 @@ t_redir	*redir_new(t_redir_type ty, const char *target)
 {
 	t_redir	*r;
 
-	r = (t_redir *)calloc(1, sizeof(t_redir));
+	r = (t_redir *)ms_calloc(1, sizeof(t_redir));
 	if (!r)
-	{
-		perror("calloc");
 		exit(1);
-	}
 	r->type = ty;
 	if (target)
-		r->target = strdup(target);
+		r->target = ms_strdup(target);
 	else
-		r->target = strdup("");
+		r->target = ms_strdup("");
 	return (r);
 }
 

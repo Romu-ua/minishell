@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -22,7 +23,7 @@ static int	parse_args(t_parser *ps, t_str_vec *argv, t_redir **rlist)
 	while (peek(ps)->kind == T_WORD)
 	{
 		t = advance(ps);
-		sv_push(argv, strdup(t->lexeme));
+		sv_push(argv, ms_strdup(t->lexeme));
 		while (1)
 		{
 			progress = parser_redir(ps, rlist);

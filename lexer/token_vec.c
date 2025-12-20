@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -32,12 +33,9 @@ void	tv_push(t_token_vec *v, t_token t)
 			ncap = v->cap * 2;
 		else
 			ncap = 8;
-		nd = (t_token *)realloc(v->data, ncap * sizeof(t_token));
+		nd = (t_token *)ms_realloc(v->data, v->cap, ncap * sizeof(t_token));
 		if (!nd)
-		{
-			perror("realloc");
 			exit(1);
-		}
 		v->data = nd;
 		v->cap = ncap;
 	}

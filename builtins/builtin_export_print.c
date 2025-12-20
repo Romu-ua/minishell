@@ -50,7 +50,6 @@ void	bi_print_export(void)
 		return ;
 	if (!arr)
 	{
-		perror("malloc");
 		export_print_unsorted();
 		return ;
 	}

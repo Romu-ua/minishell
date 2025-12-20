@@ -27,10 +27,7 @@ static int	export_apply(char *name, char *value)
 		return (1);
 	}
 	if (env_set(name, value, 1) < 0)
-	{
-		perror("malloc");
 		return (1);
-	}
 	return (0);
 }
 

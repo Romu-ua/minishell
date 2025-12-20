@@ -33,10 +33,7 @@ int	pipes_make(int (*pipes)[2], int n)
 	while (i < n)
 	{
 		if (pipe(pipes[i]) < 0)
-		{
-			perror("pipe");
 			return (-1);
-		}
 		i++;
 	}
 	return (0);

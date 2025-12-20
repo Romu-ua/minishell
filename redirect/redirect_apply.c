@@ -16,7 +16,6 @@ static int	rd_dup_to(int fd, int stdfd)
 {
 	if (dup2(fd, stdfd) < 0)
 	{
-		perror("dup2");
 		close(fd);
 		return (-1);
 	}

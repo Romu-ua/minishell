@@ -31,18 +31,12 @@ void	setup_signal(void)
 	sa_int.sa_handler = sigint_handler;
 	sa_int.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa_int, NULL) == -1)
-	{
-		perror("sigaction SIGINT");
 		exit(1);
-	}
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_handler = SIG_IGN;
 	sa_quit.sa_flags = 0;
 	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
-	{
-		perror("sigaction SIGQUIT");
 		exit(1);
-	}
 }
 
 void	setup_signal_ignore(void)
@@ -53,15 +47,9 @@ void	setup_signal_ignore(void)
 	sa.sa_handler = SIG_IGN;
 	sa.sa_flags = 0;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-	{
-		perror("sigaction SIGINT");
 		exit(1);
-	}
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-	{
-		perror("sigaction SIGQUIT");
 		exit(1);
-	}
 }
 
 void	setup_signal_exec(void)
@@ -72,13 +60,7 @@ void	setup_signal_exec(void)
 	sa.sa_handler = SIG_DFL;
 	sa.sa_flags = 0;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-	{
-		perror("sigaction SIGINT");
 		exit(1);
-	}
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-	{
-		perror("sigaction SIGQUIT");
 		exit(1);
-	}
 }

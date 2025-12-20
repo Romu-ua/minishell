@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -18,12 +19,9 @@ t_ast	*ast_new(t_node_kind k)
 {
 	t_ast	*n;
 
-	n = (t_ast *)calloc(1, sizeof(t_ast));
+	n = (t_ast *)ms_calloc(1, sizeof(t_ast));
 	if (!n)
-	{
-		perror("calloc");
 		exit(1);
-	}
 	n->kind = k;
 	return (n);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -32,12 +33,9 @@ void	sv_push(t_str_vec *v, char *s)
 			ncap = v->cap * 2;
 		else
 			ncap = 8;
-		nd = (char **)realloc(v->data, ncap * sizeof(char *));
+		nd = (char **)ms_realloc(v->data, v->cap, ncap * sizeof(char *));
 		if (!nd)
-		{
-			perror("realloc");
 			exit(1);
-		}
 		v->cap = ncap;
 		v->data = nd;
 	}
