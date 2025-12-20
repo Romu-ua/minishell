@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "ms_utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -32,12 +33,9 @@ void	sb_putc(t_str_buf *b, int c)
 			ncap = b->cap * 2;
 		else
 			ncap = 32;
-		ns = (char *)realloc(b->s, ncap * sizeof(char));
+		ns = (char *)ms_realloc(b->s, b->cap, ncap * sizeof(char));
 		if (!ns)
-		{
-			perror("realloc");
 			exit(1);
-		}
 		b->cap = ncap;
 		b->s = ns;
 	}

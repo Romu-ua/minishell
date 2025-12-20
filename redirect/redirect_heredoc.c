@@ -19,10 +19,7 @@ static int	hd_open_pipe(struct s_hd *h)
 	h->pfd[0] = -1;
 	h->pfd[1] = -1;
 	if (pipe(h->pfd) < 0)
-	{
-		perror("pipe");
 		return (-1);
-	}
 	return (0);
 }
 
@@ -41,10 +38,7 @@ static int	hd_set_delim(struct s_hd *h, const char *target)
 	else
 		h->delim = ms_strdup(target);
 	if (!h->delim)
-	{
-		perror("malloc");
 		return (-1);
-	}
 	return (0);
 }
 
@@ -57,10 +51,7 @@ static int	hd_write_one(struct s_hd *h, const char *line)
 	{
 		ex = expand_heredoc_line(line);
 		if (!ex)
-		{
-			perror("malloc");
 			return (-1);
-		}
 		write(h->pfd[1], ex, ms_strlen(ex));
 		free(ex);
 	}
@@ -114,7 +105,6 @@ int	rd_handle_heredoc(t_redir *r)
 	close(h.pfd[1]);
 	if (dup2(h.pfd[0], STDIN_FILENO) < 0)
 	{
-		perror("dup2");
 		close(h.pfd[0]);
 		return (-1);
 	}

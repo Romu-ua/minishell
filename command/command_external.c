@@ -19,15 +19,14 @@ static void	exec_not_found(char *cmd, char **envp, char *dup)
 	ms_putstr_fd(": command not found\n", MS_STDERR);
 	free(dup);
 	env_free_envp(envp);
-	_exit(127);
+	exit(127);
 }
 
 static void	exec_with_slash(char *cmd, char **argv, char **envp)
 {
 	execve(cmd, argv, envp);
-	perror(cmd);
 	env_free_envp(envp);
-	_exit(127);
+	exit(127);
 }
 
 static void	exec_path_loop(char *cmd, char **argv, char **envp, char *dup)
@@ -59,9 +58,8 @@ static void	exec_from_path(char *cmd, char **argv,
 	dup = ms_strdup(path);
 	if (!dup)
 	{
-		perror("malloc");
 		env_free_envp(envp);
-		_exit(1);
+		exit(1);
 	}
 	exec_path_loop(cmd, argv, envp, dup);
 }
@@ -77,10 +75,7 @@ void	cmd_exec_external(char **argv)
 		exit(0);
 	envp = env_to_envp_exec();
 	if (!envp)
-	{
-		perror("malloc");
 		exit(1);
-	}
 	setup_signal_exec();
 	if (ms_strchr(cmd, '/'))
 		exec_with_slash(cmd, argv, envp);

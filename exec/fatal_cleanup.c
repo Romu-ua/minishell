@@ -43,9 +43,3 @@ void	ms_cleanup_and_exit(int status)
 	cleanup_all();
 	exit(status);
 }
-
-void	fatal(const char *msg)
-{
-	perror(msg);
-	ms_cleanup_and_exit(1);
-}

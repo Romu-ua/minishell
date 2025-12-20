@@ -48,7 +48,6 @@ int			expand_ast(t_ast *node);
 char		*expand_heredoc_line(const char *src);
 void		ms_register_ast(t_ast *root);
 void		ms_cleanup_and_exit(int status) __attribute__((noreturn));
-void		fatal(const char *msg) __attribute__((noreturn));
 int			is_empty_command(t_cmd *cmd);
 int			exec_ast(t_ast *node);
 void		exec_command_child(t_cmd *cmd);

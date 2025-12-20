@@ -20,10 +20,7 @@ int	bi_env(char **argv)
 	(void)argv;
 	envp = env_to_envp_exec();
 	if (!envp)
-	{
-		perror("malloc");
 		return (1);
-	}
 	i = 0;
 	while (envp[i])
 	{

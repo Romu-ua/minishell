@@ -24,7 +24,6 @@ static void	run_command(t_ast *root)
 	ms_register_ast(root);
 	if (expand_ast(root) < 0)
 	{
-		perror("malloc");
 		g_exit_status = 1;
 		free_ast(root);
 		ms_register_ast(NULL);
@@ -62,10 +61,7 @@ static int	init_shell(char **envp)
 {
 	g_exit_status = 0;
 	if (env_init(envp) < 0)
-	{
-		perror("malloc");
 		return (1);
-	}
 	rl_outstream = stderr;
 	return (0);
 }

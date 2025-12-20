@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "ms_utils.h"
 #include <ctype.h>
 
 void	skip_space(const char **p)
 {
-	while (isspace((unsigned char)**p))
+	while (ms_isspace((unsigned char)**p))
 		(*p)++;
 }
 

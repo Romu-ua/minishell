@@ -18,10 +18,7 @@ int	bi_pwd(char **argv)
 
 	(void)argv;
 	if (!getcwd(buf, sizeof(buf)))
-	{
-		perror("pwd");
 		return (1);
-	}
 	write(STDOUT_FILENO, buf, ms_strlen(buf));
 	write(STDOUT_FILENO, "\n", 1);
 	return (0);
