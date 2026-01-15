@@ -1,9 +1,6 @@
 # minishell
-動作例：
-<video width="100%" controls autoplay loop muted>
-  <source src="sample.mov" type="video/quicktime">
-  動画を再生できません。
-</video>
+
+Demo video: ![demo](output.gif)
 
 ## github 管理
 
@@ -42,4 +39,4 @@ git push
 ```
 
 ※PR は細かく出す
-(2026年1月15日 mainの保護ルールを削除しました。)
+(2026 年 1 月 15 日 main の保護ルールを削除しました。)
